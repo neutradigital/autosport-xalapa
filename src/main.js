@@ -49,43 +49,61 @@ if (introCurtain && startBtn) {
             startupSound.play().catch(e => console.log('Audio play failed:', e));
 
             // STRICT 4-SECOND AUDIO TIMEOUT (Mobile-friendly)
+            const playPromise = startupSound.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(e => console.log('Auto-play prevent blocked:', e));
+            }
+
+            // ============================================================
+            // LÓGICA DE APAGADO (Separa el Fade del Stop)
+            // ============================================================
+
+            // A. EL FADE (Decorativo - Intenta bajar volumen desde el segundo 3)
+            const fadeInterval = setInterval(() => {
+                // Solo intentamos bajar si es mayor a 0.1
+                if (startupSound.volume > 0.1) {
+                    // En iOS esta línea no hará nada, y no pasa nada.
+                    startupSound.volume -= 0.1;
+                }
+            }, 100); // Cada 0.1s
+
+            // B. LA GUILLOTINA (Funcional - Corta sí o sí a los 4 segundos)
             setTimeout(() => {
-                const fadeInterval = setInterval(() => {
-                    // Solo bajamos si el volumen es mayor a 0
-                    if (startupSound.volume > 0.05) {
-                        startupSound.volume -= 0.05; // Bajamos 5% cada 100ms
-                    } else {
-                        // 3. HARD STOP (Al llegar a cero o pasar los 4s totales)
-                        startupSound.volume = 0;
-                        startupSound.pause();
-                        startupSound.currentTime = 0;
-                        clearInterval(fadeInterval); // Importante: detener el bucle
-                    }
-                }, 100); // Se ejecuta cada 0.1 segundos
-            }, 3000); // <-- EL FADE INICIA AQUI (Segundo 3);
+                // Detenemos el intervalo del fade para ahorrar memoria
+                clearInterval(fadeInterval);
+
+                // FORZAMOS EL SILENCIO Y PAUSA
+                startupSound.pause();
+                startupSound.currentTime = 0;
+
+                // Restablecemos volumen para la próxima vez (por si acaso)
+                startupSound.volume = 0.5;
+            }, 4000); // <-- 4000ms EXACTOS
         }
+    }
 
-        // Trigger Ignition Sequence
-        // 1. Flash Red
-        introCurtain.classList.add('animate-flash-red');
+    // Trigger Ignition Sequence
+    // 1. Flash Red
+    introCurtain.classList.add('animate-flash-red');
 
-        // 2. Delay before opening (simulating engine start/rev up)
+    // 2. Delay before opening (simulating engine start/rev up)
+    setTimeout(() => {
+        // Stop Flash
+        introCurtain.classList.remove('animate-flash-red');
+
+        // Add opacity fade out
+        introCurtain.classList.add('opacity-0', 'pointer-events-none');
+
+        // Unlock scroll after transition
         setTimeout(() => {
-            // Stop Flash
-            introCurtain.classList.remove('animate-flash-red');
+            document.body.style.overflow = '';
+        }, 1000);
 
-            // Add opacity fade out
-            introCurtain.classList.add('opacity-0', 'pointer-events-none');
+    }, 800); // 800ms of flashing/delay
+};
 
-            // Unlock scroll after transition
-            setTimeout(() => {
-                document.body.style.overflow = '';
-            }, 1000);
+// Support both click and touchstart for mobile compatibility
+startBtn.addEventListener('click', dismissCurtain);
+startBtn.addEventListener('touchstart', dismissCurtain, { passive: true });
 
-        }, 800); // 800ms of flashing/delay
-    };
-
-    // Support both click and touchstart for mobile compatibility
-    startBtn.addEventListener('click', dismissCurtain);
-    startBtn.addEventListener('touchstart', dismissCurtain, { passive: true });
-}
