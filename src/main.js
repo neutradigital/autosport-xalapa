@@ -50,9 +50,19 @@ if (introCurtain && startBtn) {
 
             // STRICT 4-SECOND AUDIO TIMEOUT (Mobile-friendly)
             setTimeout(() => {
-                startupSound.pause();
-                startupSound.currentTime = 0;
-            }, 4000);
+                const fadeInterval = setInterval(() => {
+                    // Solo bajamos si el volumen es mayor a 0
+                    if (startupSound.volume > 0.05) {
+                        startupSound.volume -= 0.05; // Bajamos 5% cada 100ms
+                    } else {
+                        // 3. HARD STOP (Al llegar a cero o pasar los 4s totales)
+                        startupSound.volume = 0;
+                        startupSound.pause();
+                        startupSound.currentTime = 0;
+                        clearInterval(fadeInterval); // Importante: detener el bucle
+                    }
+                }, 100); // Se ejecuta cada 0.1 segundos
+            }, 3000); // <-- EL FADE INICIA AQUI (Segundo 3);
         }
 
         // Trigger Ignition Sequence
