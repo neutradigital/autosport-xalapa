@@ -47,6 +47,12 @@ if (introCurtain && startBtn) {
             startupSound.volume = 0.5;
             startupSound.currentTime = 0;
             startupSound.play().catch(e => console.log('Audio play failed:', e));
+
+            // STRICT 4-SECOND AUDIO TIMEOUT (Mobile-friendly)
+            setTimeout(() => {
+                startupSound.pause();
+                startupSound.currentTime = 0;
+            }, 4000);
         }
 
         // Trigger Ignition Sequence
@@ -67,22 +73,9 @@ if (introCurtain && startBtn) {
             }, 1000);
 
         }, 800); // 800ms of flashing/delay
-
-        // Audio Fade Logic (Adjusted for delay)
-        setTimeout(() => {
-            if (startupSound) {
-                const fadeAudio = setInterval(() => {
-                    if (startupSound.volume > 0.05) {
-                        startupSound.volume -= 0.05;
-                    } else {
-                        startupSound.pause();
-                        startupSound.currentTime = 0;
-                        clearInterval(fadeAudio);
-                    }
-                }, 50);
-            }
-        }, 3500);
     };
 
+    // Support both click and touchstart for mobile compatibility
     startBtn.addEventListener('click', dismissCurtain);
+    startBtn.addEventListener('touchstart', dismissCurtain, { passive: true });
 }
