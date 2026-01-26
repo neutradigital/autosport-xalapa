@@ -1,0 +1,21 @@
+{
+  "name": "autosportxl",
+  "version": "1.0.0",
+  "description": "Auto Sport XL Landing Page",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "Neutra Digital",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "terser": "^5.37.0",
+    "vite": "^6.0.0"
+  },
+  "type": "module"
+}
