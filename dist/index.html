@@ -5,14 +5,86 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auto Sport XL | Luxury Auto Customization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta name="description"
         content="Especialistas en modificaciones de lujo, wraps, cerámicos y accesorios de alta gama. Pasión por el detalle." />
-  <script type="module" crossorigin src="/assets/index-CUKbN6Nm.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B6CBuGy8.css">
+  <script type="module" crossorigin src="/assets/index-DHrSS5UC.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BCPNqkm8.css">
 </head>
 
 <body class="antialiased selection:bg-racing-red selection:text-white">
     <div id="app" class="relative w-full overflow-hidden">
+
+        <!-- INTRO CURTAIN -->
+        <div id="intro-curtain"
+            class="fixed inset-0 z-[100] flex flex-col justify-between bg-black text-white transition-opacity duration-1000 ease-in-out">
+            <!-- Audio Preload -->
+            <audio id="startup-sound" src="/assets/hq-sound-effects-CTHBx9Jy.mp3" preload="auto"></audio>
+
+            <!-- Background -->
+            <div class="absolute inset-0">
+                <img src="/assets/fondoautosport-3zjzo24D.jpg" class="w-full h-full object-cover opacity-40"
+                    alt="Background">
+                <div class="absolute inset-0 bg-black/70"></div>
+            </div>
+
+            <!-- Nav Placeholder -->
+            <div class="relative z-10 flex justify-between items-center p-6 md:p-12">
+                <div class="text-2xl font-orbitron font-bold tracking-tighter relative z-50"> <span
+                        class="text-green-700">AUTO</span>SPORT
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <div class="w-1.5 h-1.5 bg-white rounded-full opacity-50"></div>
+                    <div class="w-1.5 h-1.5 bg-white rounded-full opacity-50"></div>
+                </div>
+            </div>
+
+            <!-- Center Content -->
+            <div class="relative z-10 flex flex-col items-center justify-center gap-10 mt-[-60px]">
+                <!-- Power Button -->
+                <button id="start-btn"
+                    class="group relative flex items-center justify-center w-32 h-32 rounded-full border-4 border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 cursor-pointer">
+                    <!-- Outer Glow Ring (Pseudo-element logic handled via box-shadow in CSS or classes) -->
+                    <div
+                        class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_40px_rgba(201,25,12,0.6)]">
+                    </div>
+
+                    <!-- SVG Ring -->
+                    <svg class="w-full h-full absolute inset-0 -rotate-90" viewBox="0 0 100 100">
+                        <!-- Track -->
+                        <circle cx="50" cy="50" r="46" class="stroke-white/10" stroke-width="2" fill="none" />
+                        <!-- Progress/Active -->
+                        <circle cx="50" cy="50" r="46" class="stroke-racing-red transition-all duration-700 ease-out"
+                            stroke-width="2" fill="none" stroke-dasharray="290" stroke-dashoffset="290"
+                            style="stroke-dashoffset: 290;" onmouseover="this.style.strokeDashoffset = 0"
+                            onmouseout="this.style.strokeDashoffset = 290" />
+                    </svg>
+
+                    <!-- Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-12 h-12 text-gray-400 group-hover:text-white transition-colors duration-300 relative z-10">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
+                    </svg>
+                </button>
+
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-[0.2em] font-orbitron text-white drop-shadow-lg">
+                        ELEVATE YOUR DRIVE</h2>
+                    <p class="text-xs md:text-sm text-gray-400 tracking-[0.4em] font-precision animate-pulse">PUSH TO
+                        START</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="relative z-10 p-6 md:p-12">
+                <div class="font-industrial text-sm tracking-widest text-gray-500 flex items-center gap-2">
+                    <span class="w-8 h-[1px] bg-racing-red inline-block"></span> NEUTRA
+                </div>
+            </div>
+        </div>
 
         <!-- NAV (Responsive) -->
         <nav
@@ -61,14 +133,15 @@
             <div class="absolute inset-0 bg-gradient-to-b from-carbon-black/80  via-transparent to-carbon-black z-10">
             </div>
 
-            <div class="relative z-20 text-center px-4 max-w-5xl pt-50 md:pt-40 mx-auto">
-                <h1 class="text-5xl md:text-9xl font-bold md:leading-[120px] md:mb-40 mb-60">
+            <div class="relative z-20 text-center px-4 max-w-5xl pt-50 md:pt-30 mx-auto">
+                <h1 class="text-5xl md:text-9xl font-bold md:leading-[120px] md:mb75 mb-60">
                     DETALLE <span class="bg-clip-text text-racing-red neon-title">ABSOLUTO</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-200 font-light mb-10 max-w-2xl mx-auto">
                     Donde la ingeniería se encuentra con la obsesión. Transformamos vehículos en declaraciones de poder.
                 </p>
-                <a href="#contact" class="btn-primary md:w-100 md:h-20 animate-pulse">
+                <a href="https://wa.me/522285915191?text=Hola,%20me%20interesa%20comenzar%20un%20proyecto"
+                    class="btn-primary md:w-100 md:h-20 animate-pulse">
                     INICIAR PROYECTO
                 </a>
             </div>
@@ -78,7 +151,7 @@
         <section id="services" class="py-24 px-6 bg-carbon-black">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl md:text-6xl mb-16 border-l-4 border-racing-red pl-6">
-                    INGENIERÍA VISUAL
+                    NUESTROS <span class="text-racing-red font-bold">SERVICIOS</span>
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[400px]">
@@ -152,7 +225,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                     <div>
                         <h2 class="text-4xl md:text-6xl mb-8">
-                            EL MÉTODO <br /> <span class="text-racing-red">XL</span>
+                            CÓMO TRABAJAMOS <br /> <span class="text-racing-red"></span>
                         </h2>
                         <div class="space-y-12">
                             <div class="flex gap-6 group">
