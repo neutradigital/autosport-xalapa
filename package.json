@@ -1,7 +1,7 @@
 {
   "name": "autosportxl",
   "version": "1.0.0",
-  "description": "Auto Sport XL Landing Page",
+  "description": "AutoStore Xalapa Landing Page",
   "main": "src/main.js",
   "scripts": {
     "dev": "vite",

@@ -1,6 +1,6 @@
 import './style.css';
 
-console.log('Auto Sport XL - Loaded');
+console.log('AutoStore Xalapa - Loaded');
 
 // Mobile Menu Logic
 const menuBtn = document.getElementById('menu-btn');
